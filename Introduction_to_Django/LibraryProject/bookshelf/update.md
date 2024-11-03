@@ -1,13 +1,13 @@
-# Update Operation   
+# Update a Book Entry  
 
-Command:  
+This document explains how to update an existing book entry in the library system.  
+
+### Example Code  
+
 ```python  
 from bookshelf.models import Book  
 
-# Retrieve the book first  
+# Update an existing book entry  
 book = Book.objects.get(title="1984")  
-
-# Update the book attributes  
-book.author = "George Orwell (Updated)"  
-book.publication_year = 1950  
-book.save()  # Save the changes
+book.title = "Nineteen Eighty-Four"  
+book.save()
