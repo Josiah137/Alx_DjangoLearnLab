@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>company</title>
-</head>
-<body>
-    <h1 style="text-align: center;">welcome!! to the company's deparments</h1>
-   <h4>this is a departments page we will list our departments below</h4> 
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>company</title>
 
-   <p>
-    please click
-    <!-- <a href="{url 'product_list' ">Back to Product List</a> -->
-    <a href="{%url 'department_list'%}"> here </a> to view them 
-   </p>
-   
-</body>
+      <!-- <link rel="stylesheet" href="style.css"> -->
+      {% load static %}  <!-- if i was inhering from the base model i dont have to put this here -->>
+      <link rel="stylesheet" href="{% static 'CSS/styles.css'%}" />
+   </head>
+
+   <body>
+      <h1>welcome!! to the company's deparments</h1>
+      <h4>this is a departments page we will list our departments below</h4>
+
+      <p>
+         please click
+         <!-- <a href="{url 'product_list' ">Back to Product List</a> -->
+         <a href="{%url 'department_list'%}">here</a>
+         to view them
+      </p>
+   </body>
 </html>
