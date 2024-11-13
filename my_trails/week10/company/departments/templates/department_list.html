@@ -1,0 +1,52 @@
+{%extends 'base.html'%}
+<!-- <!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+   </head>
+   <body>
+      <h3>here is the department list</h3>
+
+      <ul>
+         {% for dep in our_department_list %}
+
+         <li>{{dep.department_name}}</li>
+
+         {% endfor%}
+      </ul>
+
+      <p>
+         if you want to go back to the deoartments landing page please click
+         <a href="{%url 'our_departments_landing'%}">here</a>
+         or the orginal landing page
+         <a href="{% url 'main_landing' %}">here</a>
+      </p>
+   </body>
+</html> -->
+
+<!-- CHECK the above it perfctly works but we can simply it by using the twplate inhertinace instade of writign the
+bullrplate on every template we put it on base html and reuse that -->
+
+<!-- i put the index html at the top because it through an error if it's not top -->
+{%block title%} title-deplist {% endblock%} {% block content%}
+
+<h3>here is the department list</h3>
+
+<ul>
+   {% for dep in our_department_list %}
+
+   <li>{{dep.department_name}}</li>
+
+   {% endfor%}
+</ul>
+
+<p>
+   if you want to go back to the deoartments landing page please click
+   <a href="{%url 'our_departments_landing'%}">here</a>
+   or the orginal landing page
+   <a href="{% url 'main_landing' %}">here</a>
+</p>
+
+{% endblock %}
