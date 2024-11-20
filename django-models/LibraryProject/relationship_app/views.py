@@ -19,3 +19,9 @@ class LibraryDetailView(DetailView):
 
     def get_queryset(self):  
         return Library.objects.prefetch_related('books')  # Prefetch related books for efficiency
+    
+
+
+from django.contrib.auth import login, logout, authenticate  
+from django.contrib.auth.forms import UserCreationForm  
+from django.shortcuts import redirect # importing along with rendering
