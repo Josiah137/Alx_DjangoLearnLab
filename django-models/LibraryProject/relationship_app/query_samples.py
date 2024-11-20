@@ -15,9 +15,9 @@ from relationship_app.models import Author, Book, Library, Librarian
 # 1. Query all books by a specific author
 def get_books_by_author(author_name):
     try:
-        author = Author.objects.get(name = author_name)
+        author = Author.objects.get(name=author_name)
         # books = author.books.all()  # Using the related name "books" .... but the checker is not expecting this
-        books = Book.objects.filter(author = author)
+        books = Book.objects.filter(author=author)
         return books
     except Author.DoesNotExist:
         return None
