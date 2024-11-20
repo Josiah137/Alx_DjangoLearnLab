@@ -14,7 +14,7 @@ from .models import Library  # Import your Library model
 
 class LibraryDetailView(DetailView):  
     model = Library  # Specify the model to use  
-    template_name = 'library_detail.html'  # Specify the template to render  
+    template_name = 'relationship_app/library_detail.html'  # Specify the template to render  
     context_object_name = 'library'  # Name of the context object to use in the template  
 
     def get_queryset(self):  
