@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.shortcuts import render  
+# from django.shortcuts import render  
 from .models import Book  # Make sure to import your Book model  
 
 def list_books(request):  

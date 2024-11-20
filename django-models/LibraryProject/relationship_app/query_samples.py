@@ -36,7 +36,7 @@ def get_librarian_for_library(library_name):
     try:
         library = Library.objects.get(name=library_name)
         # librarian = library.librarians# Using the related name "librarian" ... the same for this also they are not expecting related names 
-        Librarian = Librarian.objects.get(library=library_name) # instade of the related name they want us to put the field     
+        librarian = Librarian.objects.get(library=library_name) # instade of the related name they want us to put the field (maybe to make it also avalible for those who did not give a realted name for their model)     
         return librarian
     except Library.DoesNotExist:
         return None
