@@ -6,7 +6,7 @@ from .models import Book  # Make sure to import your Book model
 
 def list_books(request):  
     books = Book.objects.all()  # Retrieve all books from the database  
-    return render(request, 'list_books.html', {'books': books})  # Render the template with books
+    return render(request, 'relationship_app/list_books.html', {'books': books})  # Render the template with books
 
 
 from django.views.generic import DetailView  
