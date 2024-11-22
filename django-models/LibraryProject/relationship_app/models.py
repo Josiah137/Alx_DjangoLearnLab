@@ -43,3 +43,35 @@ class Librarian(models.Model):
         return f"{self.name} with no associated library" #This ensures that the method doesn’t break if library is None.
         
 # you can test it in the shell. with what i have alrady created
+
+
+
+
+from django.contrib.auth.models import User
+
+# Choices for user roles
+ROLE_CHOICES = [
+    ('Admin', 'Admin'),
+    ('Librarian', 'Librarian'),
+    ('Member', 'Member'),
+    ]
+
+# Extend the User model with a one-to-one relationship to store additional profile information
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='Member')
+
+    def __str__(self):
+        return f"{self.user.username} - {self.role}"
+
+# Django signals to automatically create and update the user profile when a user is created or updated
+# the explaintion  is on GPT in detail(name = debugging dgango on eyos73)
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+@receiver(post_save, sender=User)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        # Create a UserProfile when a new user is created
+        UserProfile.objects.create(user=instance, role='Member')  # Default role
+    # Update the profile if user already exists (optional, might be unnecessary here)
+    instance.userprofile.save()

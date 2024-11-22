@@ -35,16 +35,53 @@ from django.contrib.auth import login
 
 # Custom registration view
 def register(request):
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
+    if request.method == "POST": # This typically means the user has filled the registration form and click submit.
+        form = UserCreationForm(request.POST) #This line creates an instance of UserCreationForm
+        if form.is_valid(): # This checks if the submitted data meets all validation criteria defined in the UserCreationForm.
+            user = form.save() # The user is created in the database using the valid data.
             login(request, user)  # Log in the user after registration
             return redirect("home")  # Redirect to a 'home' page after successful registration
     else:
-        form = UserCreationForm()
+        form = UserCreationForm() # means GET method gives an empty form to user to be filled (see ur not on excersie for more info)
     return render(request, "relationship_app/register.html", {"form": form})
 
 
 def home(request):
     return render(request, "relationship_app/home.html")
+
+
+
+
+
+# below is to set up role based views
+
+from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponseForbidden
+from .models import UserProfile
+
+# Check if the user is an Admin
+def is_admin(user):
+    return user.userprofile.role == 'Admin'
+
+# Check if the user is a Librarian
+def is_librarian(user):
+    return user.userprofile.role == 'Librarian'
+
+# Check if the user is a Member
+def is_member(user):
+    return user.userprofile.role == 'Member'
+
+# Admin view, accessible only by users with the 'Admin' role
+@user_passes_test(is_admin)
+def admin_view(request):
+    return render(request, 'relationship_app/admin_view.html')
+
+# Librarian view, accessible only by users with the 'Librarian' role
+@user_passes_test(is_librarian)
+def librarian_view(request):
+    return render(request, 'relationship_app/librarian_view.html')
+
+# Member view, accessible only by users with the 'Member' role
+@user_passes_test(is_member)
+def member_view(request):
+    return render(request, 'relationship_app/member_view.html')
