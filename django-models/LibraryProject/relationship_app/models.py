@@ -49,23 +49,27 @@ class Librarian(models.Model):
 
 from django.contrib.auth.models import User
 
-# Choices for user roles
-ROLE_CHOICES = [
+# Extend the User model with a one-to-one relationship to store additional profile information
+class UserProfile(models.Model):
+    # Choices for user roles
+    ROLE_CHOICES = [
     ('Admin', 'Admin'),
     ('Librarian', 'Librarian'),
     ('Member', 'Member'),
     ]
 
-# Extend the User model with a one-to-one relationship to store additional profile information
-class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='Member')
+
+  
 
     def __str__(self):
         return f"{self.user.username} - {self.role}"
 
 # Django signals to automatically create and update the user profile when a user is created or updated
 # the explaintion  is on GPT in detail(name = debugging dgango on eyos73)
+
+
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 @receiver(post_save, sender=User)
