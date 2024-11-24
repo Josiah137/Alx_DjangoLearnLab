@@ -59,17 +59,31 @@ from django.contrib.auth.decorators import user_passes_test
 from django.http import HttpResponseForbidden
 from .models import UserProfile
 
-# Check if the user is an Admin
+# # Check if the user is an Admin
+# def is_admin(user):
+#     return user.userprofile.role == 'Admin'
+
+# # Check if the user is a Librarian
+# def is_librarian(user):
+#     return user.userprofile.role == 'Librarian'
+
+# # Check if the user is a Member
+# def is_member(user):
+#     return user.userprofile.role == 'Member'
+
+
+
+# to ensure they handle cases where user.userprofile might not exist.
+
 def is_admin(user):
-    return user.userprofile.role == 'Admin'
+    return hasattr(user, 'userprofile') and user.userprofile.role == 'Admin'
 
-# Check if the user is a Librarian
 def is_librarian(user):
-    return user.userprofile.role == 'Librarian'
+    return hasattr(user, 'userprofile') and user.userprofile.role == 'Librarian'
 
-# Check if the user is a Member
 def is_member(user):
-    return user.userprofile.role == 'Member'
+    return hasattr(user, 'userprofile') and user.userprofile.role == 'Member'
+
 
 # Admin view, accessible only by users with the 'Admin' role
 # @user_passes_test(is_admin)

@@ -76,6 +76,6 @@ from django.dispatch import receiver
 def create_or_update_user_profile(sender, instance, created, **kwargs):
     if created:
         # Create a UserProfile when a new user is created
-        UserProfile.objects.create(user=instance, role='Member')  # Default role
+        UserProfile.objects.creatgit e(user=instance, role='Member')  # Default role
     # Update the profile if user already exists (optional, might be unnecessary here)
     instance.userprofile.save()
