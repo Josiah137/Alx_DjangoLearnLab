@@ -1,32 +1,21 @@
 from django.contrib import admin
-from .models import Book
-from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser, CustomUserManager
 
-# Register your models here.
+# Register your models here. 
+from .models import Book  
 
-class BookAdmin(admin.ModelAdmin):
-    list_display = ("title", "author", "publication_year")
-    list_filter = ("author", "publication_year")
-    search_fields = ("title", "author__name")
+# Register the Book model with the admin  
+# admin.site.register(Book)
+
+
+class BookAdmin(admin.ModelAdmin):  
+    # Specify the fields to display in the list view  
+    list_display = ('title', 'author', 'publication_year')  
     
+    # Add filters for publication year  
+    list_filter = ('publication_year',)  
+    
+    # Enable search functionality on title and author  
+    search_fields = ('title', 'author__name')  
+
+# Register the Book model with the custom admin class  
 admin.site.register(Book, BookAdmin)
-
-# Integrate the Custom User Model into Admin
-class CustomUserAdmin(UserAdmin):
-    model = CustomUser
-    fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields': ('date_of_birth', 'profile_photo')}),
-        )
-    add_fieldsets = UserAdmin.add_fieldsets + (
-        (None, {'fields': ('date_of_birth', 'profile_photo')}),
-    )
-admin.site.register(CustomUser, CustomUserAdmin)    
-
-
-
-
-
-
-
-
