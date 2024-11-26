@@ -21,10 +21,10 @@ class BookAdmin(admin.ModelAdmin):
 admin.site.register(Book, BookAdmin)
 
 
-from .models import User
+from .models import CustomUser
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 class MyUserAdmin(BaseUserAdmin):
     list_display = ["email", "is_staff"]
 
-admin.site.register(User, MyUserAdmin)
+admin.site.register(CustomUser, MyUserAdmin)

@@ -35,7 +35,7 @@ class UserManger(BaseUserManager):
         return newuser
             
 
-class User(AbstractUser):
+class CustomUser(AbstractUser):
     email = models.EmailField(unique=True, max_length=150)
     username = models.CharField(unique=False, max_length=50, blank=True, null=True)
     date_of_birth = models.DateField()
