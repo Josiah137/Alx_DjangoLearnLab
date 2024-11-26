@@ -131,3 +131,5 @@ LOGOUT_REDIRECT_URL = "login"
 # # you can Add static file settings if required for CSS in templates
 # STATIC_URL = '/static/'
 # STATICFILES_DIRS = [BASE_DIR / "static"]
+
+AUTH_USER_MODEL = "relationship_app.User"
