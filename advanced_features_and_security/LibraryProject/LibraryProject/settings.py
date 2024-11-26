@@ -132,4 +132,14 @@ LOGOUT_REDIRECT_URL = "login"
 # STATIC_URL = '/static/'
 # STATICFILES_DIRS = [BASE_DIR / "static"]
 
-AUTH_USER_MODEL = "relationship_app.User"
+
+
+
+AUTH_USER_MODEL = "bookshelf.User"
+
+import os
+# Path to the folder where uploaded files will be stored
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# URL that serves the media files in development or Defines the URL prefix to access media files in the browser (e.g., http://localhost:8000/media/profile_pictures/example.jpg).
+MEDIA_URL = '/media/'

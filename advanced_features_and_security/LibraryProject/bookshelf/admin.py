@@ -19,3 +19,12 @@ class BookAdmin(admin.ModelAdmin):
 
 # Register the Book model with the custom admin class  
 admin.site.register(Book, BookAdmin)
+
+
+from .models import User
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+
+class MyUserAdmin(BaseUserAdmin):
+    list_display = ["email", "is_staff"]
+
+admin.site.register(User, MyUserAdmin)
