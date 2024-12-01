@@ -1,13 +1,8 @@
-# Update a Book Entry  
+# Update the title of “1984” to “Nineteen Eighty-Four” and save the changes.
 
-This document explains how to update an existing book entry in the library system.  
+>>> new_book.title = "Nineteen Eighty-Four"
+>>> new_book.save()
 
-### Example Code  
-
-```python  
-from bookshelf.models import Book  
-
-# Update an existing book entry  
-book = Book.objects.get(title="1984")  
-book.title = "Nineteen Eighty-Four"  
-book.save()
+# expected output
+>>> new_book.title
+'Nineteen Eighty-Four'
