@@ -8,4 +8,6 @@ class Book(models.Model):
     published_date = models.DateField()
 
     def __str__(self):
-        return self.title
+        return self.title, "by", self.author
+    def full_info(self):
+        return f"{self.title} {self.author} on {self.published_date}"

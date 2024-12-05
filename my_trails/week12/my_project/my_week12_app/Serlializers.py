@@ -14,3 +14,4 @@ class BookSerializer(serializers.ModelSerializer):
         delta = date.today() - obj.published_date
         return delta.days
     
+    

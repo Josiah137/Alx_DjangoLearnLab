@@ -13,7 +13,7 @@ class Bookviewset(ModelViewSet):
 
 
 class AuthorViewSet(ModelViewSet):
-    queryset = Author.objects,all()
+    queryset = Author.objects.all()
     serializer_class = AuthorSerializer
 
 class GenreViewSet(ModelViewSet):

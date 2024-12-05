@@ -13,20 +13,38 @@ class GenreSerializers(serializers.ModelSerializer):
         model = Genre
         fields = "__all__"
 
-    # creating field level validation ... just to set some limit for the amount of geners a book can have
-    # field level validation syntax: vlidate_<fildname>
+    # creating field level validation ... just to set charactr limimt for each gener 
+            # field level validation syntax: vlidate_<fildname>
     # def validate(self, attrs):
         #  return super().validate(attrs)
     def validate_name(self, value):
-        if len(value) > 5:
-            raise serializers.ValidationError("a book can't have more than 5 geners \nplease try again later")
+        if len(value) > 25:
+            raise serializers.ValidationError("gener name can not be morethan 25 characters")
         return value
+    # def genre_count():    
+
 
 class BookSerializers(serializers.ModelSerializer):
     author = AuthorSerializer() 
-    genre = GenereSerializers()
+    genre = GenreSerializers(many=True)
 
     class Meta:
         model = Book
-        fields =  ["name, published_date, iSBN_number"]    # we can not use "__all__" here b/se we are specifing how some of the fields has to be 
-        #sreilized(author, gener) and if we use all we are creating conflicts since we are telling the fiilds to be serilized in two diffrent ways 
+        fields =  "__all__"
+
+    # object(instance) level validation  .... just set some limit for the amount of geners a book can have
+    # it is defined here (intade of on the Genere class) because we are not planning to set control on a single genere instance but total gener a book may have so we came here 
+    def validate(self, data):
+        if len(data[Genre]) > 5:
+            raise serializers.ValidationError("a book can't have more than 5 geners \nplease try again later")
+        return data
+
+
+
+
+
+
+
+        # 
+        # # def validate(self, attrs):
+        #  return super().validate(attrs)
