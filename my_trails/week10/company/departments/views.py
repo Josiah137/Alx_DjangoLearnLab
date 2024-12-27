@@ -7,6 +7,7 @@ from django.shortcuts import render
 from .models import Departments
 from django.http import HttpResponse
 
+# below we wil be settting views some with FCB and some with CPB for you to see. as you know the CBV is most recommend one
 # function based views
 def company_deps_welcome(request):
     return (render(request, 'departments_Home.html'))
