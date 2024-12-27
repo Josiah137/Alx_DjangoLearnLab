@@ -7,8 +7,8 @@ from .models import Book
 from .Serlializers import BookSerializer
 
 class BookListCreateAPIView(generics.ListCreateAPIView):
-    myqueryset = Book.objects.all()  # Fetch all books from the database
-    serializer_class = BookSerializer  # Use the BookSerializer for this view (defined in the serializer.py  file)
+    myqueryset = Book.objects.all()  # Fetch all books from the database (handels the get method )
+    serializer_class = BookSerializer  # Use the BookSerializer for this view (defined in the serializer.py  file) ... handles the create and put mehtod 
 
     def get_queryset(self):
         # Get all books by default

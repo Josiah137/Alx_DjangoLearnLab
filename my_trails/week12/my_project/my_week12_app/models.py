@@ -9,5 +9,7 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title, "by", self.author
+    
+    # if you want to get detail info you can make another func
     def full_info(self):
         return f"{self.title} {self.author} on {self.published_date}"
