@@ -5,11 +5,13 @@ from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
 from .models import Book, Author, Genre
 from .Serializator import AuthorSerializer, GenreSerializers, BookSerializers
+from rest_framework.permissions import IsAdminUser, IsAuthenticated
 
 #settting app all instances and their respective serilizer
 class Bookviewset(ModelViewSet):
     queryset = Book.objects.all()
     serializer_class = BookSerializers
+    # permission_classes = [IsAuthenticated]
 
 
 class AuthorViewSet(ModelViewSet):
