@@ -43,3 +43,5 @@ permission_classes = [IsAuthenticated]
 # is a redendency if we leave it empety by default they have this auth and permission.
 # unless we have multiple auth declared globally.  
 # the permssion we set on the actual code above is not redendencey the defualt is is authticated and we are overridding that.
+# after you set views to be private globlally, if you want them to be public you can use:
+"""permission_classes = [AllowAny]"""  # This will make this view public

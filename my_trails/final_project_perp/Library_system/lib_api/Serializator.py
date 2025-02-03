@@ -30,6 +30,7 @@ class BookSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Book
+        
         fields =  "__all__"
 
     # object(instance) level validation  .... just set some limit for the amount of geners a book can have
